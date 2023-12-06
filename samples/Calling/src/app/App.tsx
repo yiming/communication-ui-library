@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 
 import { CommunicationUserIdentifier } from '@azure/communication-common';
-/* @conditional-compile-remove(rooms) */
-import { ParticipantRole } from '@azure/communication-calling';
 /* @conditional-compile-remove(teams-identity-support) */
 import { fromFlatCommunicationIdentifier } from '@azure/communication-react';
+/* @conditional-compile-remove(teams-identity-support) */ /* @conditional-compile-remove(rooms) */
+import { toFlatCommunicationIdentifier } from '@azure/communication-react';
 /* @conditional-compile-remove(teams-identity-support) */
 import { MicrosoftTeamsUserIdentifier } from '@azure/communication-common';
 import { setLogLevel } from '@azure/logger';
@@ -29,14 +29,14 @@ import {
 /* @conditional-compile-remove(one-to-n-calling) */
 import { getOutboundParticipants } from './utils/AppUtils';
 /* @conditional-compile-remove(rooms) */
-import { createRoom, getRoomIdFromUrl, addUserToRoom } from './utils/AppUtils';
+import { createRoom, getRoom, getRoomIdFromUrl } from './utils/AppUtils';
 import { useIsMobile } from './utils/useIsMobile';
 import { CallError } from './views/CallError';
 import { CallScreen } from './views/CallScreen';
 import { HomeScreen } from './views/HomeScreen';
 import { UnsupportedBrowserPage } from './views/UnsupportedBrowserPage';
 
-setLogLevel('error');
+setLogLevel('verbose');
 
 console.log(
   `ACS sample calling app. Last Updated ${buildTime} Using @azure/communication-calling:${callingSDKVersion} and @azure/communication-react:${communicationReactSDKVersion}`
@@ -105,6 +105,7 @@ const App = (): JSX.Element => {
       return (
         <HomeScreen
           joiningExistingCall={joiningExistingCall}
+          userId={userId && toFlatCommunicationIdentifier(userId)}
           startCallHandler={async (callDetails) => {
             setDisplayName(callDetails.displayName);
             /* @conditional-compile-remove(PSTN-calls) */
@@ -125,30 +126,36 @@ const App = (): JSX.Element => {
 
             /* @conditional-compile-remove(rooms) */
             // There is an API call involved with creating a room so lets only create one if we know we have to
-            if (callDetails.option === 'StartRooms') {
+            if (!callDetails.roomId && callDetails.option === 'StartRooms') {
               let roomId = '';
               try {
                 roomId = await createRoom();
+                callLocator = { roomId: roomId };
+                window.location.href = window.location.origin + getJoinParams(callLocator);
               } catch (e) {
                 console.log(e);
               }
 
-              callLocator = { roomId: roomId };
+              return;
             }
 
-            /* @conditional-compile-remove(rooms) */
-            if ('roomId' in callLocator) {
-              if (userId && 'communicationUserId' in userId) {
-                await addUserToRoom(
-                  userId.communicationUserId,
-                  callLocator.roomId,
-                  callDetails.role as ParticipantRole
-                );
-              } else {
-                throw 'Invalid userId!';
+            if (callDetails.callLocator && 'roomId' in callDetails.callLocator && callDetails.option === 'GoToRoom') {
+              try {
+                const res = await getRoom(callDetails.callLocator.roomId);
+                if (res.ok) {
+                  window.location.href = window.location.origin + getJoinParams(callLocator);
+                } else {
+                  alert(`There is no room with ID '${callDetails.callLocator.roomId}'`);
+                }
+              } catch (e) {
+                alert(`Unable to check status of room '${callDetails.callLocator.roomId}'`);
               }
+              return;
             }
-            setCallLocator(callLocator);
+
+            if (callDetails.roomId) {
+              setCallLocator(callLocator);
+            }
 
             // Update window URL to have a joinable link
             if (!joiningExistingCall) {

@@ -62,7 +62,7 @@ export const createRoom = async (): Promise<string> => {
 /**
  * Add user to an ACS room with a given roomId and role
  */
-export const addUserToRoom = async (userId: string, roomId: string, role: ParticipantRole): Promise<void> => {
+export const addUserToRoom = async (userId: string, roomId: string, role: ParticipantRole): Promise<Response> => {
   const requestOptions = {
     method: 'POST',
     headers: {
@@ -74,6 +74,46 @@ export const addUserToRoom = async (userId: string, roomId: string, role: Partic
   if (!response.ok) {
     throw 'Unable to add user to room';
   }
+  return response;
+};
+
+/* @conditional-compile-remove(rooms) */
+export const getRoom = async (roomId: string): Promise<Response> => {
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ roomId: roomId })
+  };
+  const response = await fetch('/getRoom', requestOptions);
+  return response;
+};
+
+/* @conditional-compile-remove(rooms) */
+export const listParticipants = async (roomId: string): Promise<Response> => {
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ roomId: roomId })
+  };
+  const response = await fetch('/listParticipants', requestOptions);
+  return response;
+};
+
+/* @conditional-compile-remove(rooms) */
+export const removeUserFromRoom = async (userId: string, roomId: string): Promise<Response> => {
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ userId: userId, roomId: roomId })
+  };
+  const response = await fetch('/removeUserFromRoom', requestOptions);
+  return response;
 };
 
 /**

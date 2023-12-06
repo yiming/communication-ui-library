@@ -1,17 +1,25 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { CommonCallAdapter, CallComposite, CallAdapterLocator } from '@azure/communication-react';
+import {
+  CommonCallAdapter,
+  CallComposite,
+  CustomCallControlButtonCallback,
+  CustomCallControlButtonCallbackArgs,
+  CustomCallControlButtonProps,
+  toFlatCommunicationIdentifier
+} from '@azure/communication-react';
 /* @conditional-compile-remove(call-readiness) */
 import { CallCompositeOptions } from '@azure/communication-react';
-import { Spinner } from '@fluentui/react';
+import { Modal, Spinner } from '@fluentui/react';
 import { useSwitchableFluentTheme } from '../theming/SwitchableFluentThemeProvider';
 import { useIsMobile } from '../utils/useIsMobile';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 /* @conditional-compile-remove(call-readiness) */
 import { useMemo } from 'react';
 import { CallScreenProps } from './CallScreen';
 import { GroupCallLocator, TeamsMeetingLinkLocator } from '@azure/communication-calling';
+import { ManageRoom } from './ManageRoom';
 
 export type CallCompositeContainerProps = CallScreenProps & { adapter?: CommonCallAdapter };
 
@@ -20,13 +28,30 @@ export const CallCompositeContainer = (props: CallCompositeContainerProps): JSX.
   const { currentTheme, currentRtl } = useSwitchableFluentTheme();
   const isMobileSession = useIsMobile();
 
+  const [isUpdateRoleModalOpen, setIsUpdateRoleModalOpen] = useState<boolean>(false);
+  const onFetchCustomButtonProps: CustomCallControlButtonCallback[] = [
+    (args: CustomCallControlButtonCallbackArgs): CustomCallControlButtonProps => {
+      return {
+        // Some non-default icon that is already registered by the composites.
+        iconName: 'ParticipantItemOptionsHovered',
+        strings: {
+          label: 'Update role'
+        },
+        placement: 'overflow',
+        onItemClick: () => {
+          setIsUpdateRoleModalOpen(!isUpdateRoleModalOpen);
+        }
+      };
+    }
+  ];
+
   /* @conditional-compile-remove(call-readiness) */
   const options: CallCompositeOptions = useMemo(
     () => ({
       onPermissionsTroubleshootingClick,
       onNetworkingTroubleShootingClick,
       callControls: {
-        legacyControlBarExperience: false
+        onFetchCustomButtonProps
       }
     }),
     []
@@ -52,15 +77,32 @@ export const CallCompositeContainer = (props: CallCompositeContainerProps): JSX.
   }
 
   return (
-    <CallComposite
-      adapter={adapter}
-      fluentTheme={currentTheme.theme}
-      rtl={currentRtl}
-      callInvitationUrl={callInvitationUrl}
-      formFactor={isMobileSession ? 'mobile' : 'desktop'}
-      /* @conditional-compile-remove(call-readiness) */
-      options={options}
-    />
+    <>
+      <CallComposite
+        adapter={adapter}
+        fluentTheme={currentTheme.theme}
+        rtl={currentRtl}
+        callInvitationUrl={callInvitationUrl}
+        formFactor={isMobileSession ? 'mobile' : 'desktop'}
+        /* @conditional-compile-remove(call-readiness) */
+        options={options}
+      />
+      {props.userId && 'roomId' in props.callLocator && (
+        <Modal
+          styles={{ main: { padding: '1rem ' } }}
+          isOpen={isUpdateRoleModalOpen}
+          onDismiss={() => setIsUpdateRoleModalOpen(false)}
+          isBlocking={false}
+        >
+          <ManageRoom
+            userId={toFlatCommunicationIdentifier(props.userId)}
+            roomId={props.callLocator.roomId}
+            currentRole={adapter.getState().call?.role}
+            afterUpdate={() => setIsUpdateRoleModalOpen(false)}
+          />
+        </Modal>
+      )}
+    </>
   );
 };
 

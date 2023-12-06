@@ -33,11 +33,11 @@ import { ThemeSelector } from '../theming/ThemeSelector';
 import { localStorageAvailable } from '../utils/localStorage';
 import { getDisplayNameFromLocalStorage, saveDisplayNameToLocalStorage } from '../utils/localStorage';
 import { DisplayNameField } from './DisplayNameField';
-import { TeamsMeetingLinkLocator } from '@azure/communication-calling';
+import { ParticipantRole, TeamsMeetingLinkLocator } from '@azure/communication-calling';
 /* @conditional-compile-remove(rooms) */
 import { RoomLocator } from '@azure/communication-calling';
 /* @conditional-compile-remove(rooms) */
-import { getRoomIdFromUrl } from '../utils/AppUtils';
+import { addUserToRoom, getRoomIdFromUrl } from '../utils/AppUtils';
 /* @conditional-compile-remove(teams-identity-support) */
 import { getIsCTE } from '../utils/AppUtils';
 /* @conditional-compile-remove(PSTN-calls) */
@@ -68,30 +68,21 @@ export interface HomeScreenProps {
     teamsId?: string;
     /* @conditional-compile-remove(teams-adhoc-call) */
     outboundTeamsUsers?: string[];
+    roomId?: string;
   }): void;
   joiningExistingCall: boolean;
+  userId?: string;
 }
 
 export const HomeScreen = (props: HomeScreenProps): JSX.Element => {
   const imageProps = { src: heroSVG.toString() };
-  const headerTitle = props.joiningExistingCall ? 'Join Call' : 'Start or join a call';
-  const callOptionsGroupLabel = 'Select a call option';
+  const callOptionsGroupLabel = 'Select call option';
   const buttonText = 'Next';
   const callOptions: IChoiceGroupOption[] = [
-    { key: 'ACSCall', text: 'Start a call' },
     /* @conditional-compile-remove(rooms) */
-    { key: 'StartRooms', text: 'Start a Rooms call' },
-    { key: 'TeamsMeeting', text: 'Join a Teams meeting using ACS identity' },
+    { key: 'StartRooms', text: 'Start a Room' },
     /* @conditional-compile-remove(rooms) */
-    { key: 'Rooms', text: 'Join a Rooms Call' },
-    /* @conditional-compile-remove(teams-identity-support) */
-    { key: 'TeamsIdentity', text: 'Join a Teams call using Teams identity' },
-    /* @conditional-compile-remove(one-to-n-calling) */
-    { key: '1:N', text: 'Start a 1:N ACS Call' },
-    /* @conditional-compile-remove(PSTN-calls) */
-    { key: 'PSTN', text: 'Start a PSTN Call' },
-    /* @conditional-compile-remove(teams-adhoc-call) */
-    { key: 'TeamsAdhoc', text: 'Call a Teams User' }
+    { key: 'GoToRoom', text: 'Go to a Room' }
   ];
   /* @conditional-compile-remove(rooms) */
   const roomIdLabel = 'Room ID';
@@ -118,6 +109,8 @@ export const HomeScreen = (props: HomeScreenProps): JSX.Element => {
   >();
   /* @conditional-compile-remove(rooms) */
   const [chosenRoomsRoleOption, setRoomsRoleOption] = useState<IChoiceGroupOption>(roomRoleOptions[1]);
+  /* @conditional-compile-remove(rooms) */
+  const [myRole, setMyRole] = useState<ParticipantRole>();
   /* @conditional-compile-remove(PSTN-calls) */
   const [alternateCallerId, setAlternateCallerId] = useState<string>();
   /* @conditional-compile-remove(PSTN-calls) */
@@ -150,7 +143,7 @@ export const HomeScreen = (props: HomeScreenProps): JSX.Element => {
     (startGroupCall ||
       (teamsCallChosen && callLocator) ||
       /* @conditional-compile-remove(rooms) */
-      (((chosenCallOption.key === 'Rooms' && callLocator) || chosenCallOption.key === 'StartRooms') &&
+      (((chosenCallOption.key === 'GoToRoom' && callLocator) || chosenCallOption.key === 'StartRooms') &&
         chosenRoomsRoleOption) ||
       /* @conditional-compile-remove(PSTN-calls) */ (pstnCallChosen && dialPadParticipant && alternateCallerId) ||
       /* @conditional-compile-remove(teams-adhoc-call) */ (teamsAdhocChosen && outboundTeamsUsers) ||
@@ -173,6 +166,11 @@ export const HomeScreen = (props: HomeScreenProps): JSX.Element => {
   /* @conditional-compile-remove(teams-identity-support) */
   showDisplayNameField = !teamsIdentityChosen;
 
+  const roomIdFromUrl = getRoomIdFromUrl();
+  showDisplayNameField = !!roomIdFromUrl;
+
+  const headerTitle = roomIdFromUrl ? `Room ${roomIdFromUrl.roomId}` : 'Start a Room or Go to a Room';
+
   return (
     <Stack
       horizontal
@@ -193,7 +191,7 @@ export const HomeScreen = (props: HomeScreenProps): JSX.Element => {
               <ChoiceGroup
                 styles={callOptionsGroupStyles}
                 label={callOptionsGroupLabel}
-                defaultSelectedKey="ACSCall"
+                defaultSelectedKey="StartRooms"
                 options={callOptions}
                 required={true}
                 onChange={(_, option) => option && setChosenCallOption(option)}
@@ -234,7 +232,7 @@ export const HomeScreen = (props: HomeScreenProps): JSX.Element => {
               )
             }
             {
-              /* @conditional-compile-remove(rooms) */ chosenCallOption.key === 'Rooms' && (
+              /* @conditional-compile-remove(rooms) */ chosenCallOption.key === 'GoToRoom' && (
                 <Stack>
                   <TextField
                     className={teamsItemStyle}
@@ -247,7 +245,7 @@ export const HomeScreen = (props: HomeScreenProps): JSX.Element => {
             }
             {
               /* @conditional-compile-remove(rooms) */
-              (chosenCallOption.key === 'Rooms' || chosenCallOption.key === 'StartRooms' || getRoomIdFromUrl()) && (
+              roomIdFromUrl && (
                 <ChoiceGroup
                   styles={callOptionsGroupStyles}
                   label={roomsRoleGroupLabel}
@@ -258,6 +256,28 @@ export const HomeScreen = (props: HomeScreenProps): JSX.Element => {
                 />
               )
             }
+            {roomIdFromUrl && (
+              <PrimaryButton
+                className={buttonStyle}
+                text={`Invite yourself to room as ${chosenRoomsRoleOption.text}`}
+                onClick={() => {
+                  if (props.userId) {
+                    addUserToRoom(
+                      props.userId,
+                      roomIdFromUrl.roomId,
+                      chosenRoomsRoleOption.text as ParticipantRole
+                    ).then((response) => {
+                      if (response.ok) {
+                        setMyRole(chosenRoomsRoleOption.text as ParticipantRole);
+                      }
+                    });
+                  }
+                }}
+              />
+            )}
+            {myRole && (
+              <Text style={{ paddingBottom: '0.5rem' }}>{`You are now invited to this room with role ${myRole}`}</Text>
+            )}
             {
               /* @conditional-compile-remove(one-to-n-calling) */ acsCallChosen && (
                 <Stack>
@@ -343,7 +363,7 @@ export const HomeScreen = (props: HomeScreenProps): JSX.Element => {
           <PrimaryButton
             disabled={!buttonEnabled}
             className={buttonStyle}
-            text={buttonText}
+            text={roomIdFromUrl ? 'Join room' : buttonText}
             onClick={() => {
               if (displayName || /* @conditional-compile-remove(teams-identity-support) */ teamsIdentityChosen) {
                 displayName && saveDisplayNameToLocalStorage(displayName);
@@ -370,7 +390,8 @@ export const HomeScreen = (props: HomeScreenProps): JSX.Element => {
                   /* @conditional-compile-remove(teams-identity-support) */
                   teamsId,
                   /* @conditional-compile-remove(teams-adhoc-call) */
-                  outboundTeamsUsers: teamsParticipantsToCall
+                  outboundTeamsUsers: teamsParticipantsToCall,
+                  roomId: roomIdFromUrl?.roomId
                 });
               }
             }}
