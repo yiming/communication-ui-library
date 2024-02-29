@@ -284,6 +284,7 @@ function parseArgs(argv) {
 
 function notBetaBuild() {
   const flavor = getBuildFlavor();
+  console.log('current flavor:' + flavor);
   return flavor !== 'beta' && flavor !== 'beta-release';
 }
 
