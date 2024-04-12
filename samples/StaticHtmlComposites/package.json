@@ -42,7 +42,7 @@
     "@types/react": "18.2.74",
     "@types/react-dom": "18.2.23",
     "babel-loader": "8.1.0",
-    "concurrently": "^5.3.0",
+    "concurrently": "^8.2.2",
     "copy-webpack-plugin": "^11.0.0",
     "dotenv": "^10.0.0",
     "ecstatic": ">=4.1.3",
