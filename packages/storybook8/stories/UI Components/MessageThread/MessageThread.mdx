@@ -1,0 +1,43 @@
+import { ArgTypes, Canvas, Meta, Source, Story } from '@storybook/blocks';
+
+import ExampleConstantsText from '!!raw-loader!./placeholdermessages.ts';
+
+import { MessageThreadStory } from './DefaultMessageThread.stories';
+
+<Meta title="UI Components/Message Thread" of={MessageThreadStory} />
+
+# Message Thread
+
+MessageThread allows you to easily create a component for rendering chat messages, handling scrolling behavior of new/old messages and customizing icons &amp; controls inside the chat thread.
+
+MessageThread internally uses the `Chat` &amp; `ChatMessage` components from `@fluentui-contrib/chat`. You can
+checkout the details about these components
+[here](https://microsoft.github.io/fluentui-contrib/react-chat/?path=/story/chat--default).
+
+# Importing
+
+<Source code={`import { FluentThemeProvider, MessageThread } from '@azure/communication-react';`} />
+
+# Sample Messages
+
+Create a `placeholdermessages.ts` file in the current folder you are working on. Then copy paste the code below
+into that file.
+
+<Source code={ExampleConstantsText} />
+
+# Default MessageThread
+
+By default, MessageThread displays Chat messages with display name of only for other users and creation time
+of message when available.
+
+<Canvas of={DefaultExampleStory} />
+
+# MessageThread With Message Date
+
+# System Message
+
+The example below shows a message thread with a system message.
+
+# Custom Message
+
+The example below shows how to render a `custom` message with `onRenderMessage` in `MessageThread`
