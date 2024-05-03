@@ -28,7 +28,7 @@ export const preview: Preview = {
     // },
     docs: {
       toc: {
-        title: 'Table of Contents',
+        title: 'On this page',
         headingSelector: 'h2, h3'
       }
     },
