@@ -27,7 +27,10 @@ export const preview: Preview = {
     //   ),
     // },
     docs: {
-      toc: true
+      toc: {
+        title: 'Table of Contents',
+        headingSelector: 'h2, h3'
+      }
     },
     options: {
       storySort: {
