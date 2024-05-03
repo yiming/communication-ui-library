@@ -27,11 +27,13 @@ export const parameters = {
   docs: {
     toc: true
   },
-  viewMode: 'docs',
-  previewTabs: {
-    'storybook/docs/panel': { index: -1 },
-    'canvas': {
-      title: 'Preview'
+  options: {
+    storySort: {
+      order: [
+        'Composites',
+        ['Get Started'],
+        'Components'
+      ]
     }
   }
 };
