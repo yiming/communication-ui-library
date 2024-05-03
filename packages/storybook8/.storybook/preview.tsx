@@ -3,6 +3,7 @@
 
 import { FluentThemeProvider, LocalizationProvider } from '@azure/communication-react';
 import { Anchor, DocsContainer } from '@storybook/addon-docs';
+import type { Preview } from '@storybook/react';
 import React from 'react';
 import {
   COMPONENT_FOLDER_PREFIX,
@@ -14,33 +15,33 @@ import {
 import { THEMES } from '../stories/themes';
 import { LOCALES } from '../stories/locales'
 
-export const parameters = {
-  layout: 'fullscreen',
-  // docs: {
-  //   container: props => (
-  //     <DocsContainer context={props.context}>
-  //       <Anchor storyId={props.context.id} />
-  //       {props.children}
-  //     </DocsContainer>
-  //   ),
-  // },
-  docs: {
-    toc: true
-  },
-  options: {
-    storySort: {
-      order: [
-        'Composites',
-        ['Get Started'],
-        'Components'
-      ]
+export const preview: Preview = {
+  parameters: {
+    layout: 'fullscreen',
+    // docs: {
+    //   container: props => (
+    //     <DocsContainer context={props.context}>
+    //       <Anchor storyId={props.context.id} />
+    //       {props.children}
+    //     </DocsContainer>
+    //   ),
+    // },
+    docs: {
+      toc: true
+    },
+    options: {
+      storySort: {
+        order: [
+          'Composites',
+          ['Get Started'],
+          'Components'
+        ]
+      }
     }
   }
 };
 
-export default {
-  parameters: parameters
-}
+export default preview;
 
 const withThemeProvider = (Story: any, context: any) => {
   const themeName = context.globals.theme as string;
