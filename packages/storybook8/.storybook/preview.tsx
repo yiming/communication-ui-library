@@ -16,90 +16,16 @@ import { LOCALES } from '../stories/locales'
 
 export const parameters = {
   layout: 'fullscreen',
+  // docs: {
+  //   container: props => (
+  //     <DocsContainer context={props.context}>
+  //       <Anchor storyId={props.context.id} />
+  //       {props.children}
+  //     </DocsContainer>
+  //   ),
+  // },
   docs: {
-    container: props => (
-      <DocsContainer context={props.context}>
-        <Anchor storyId={props.context.id} />
-        {props.children}
-      </DocsContainer>
-    ),
-  },
-  options: {
-    // storySort: {
-      order: [
-        'Overview',
-        'Use Cases',
-        'Feedback',
-        COMPOSITE_FOLDER_PREFIX,
-        [
-          'Get Started',
-          'CallWithChatComposite',
-          'CallComposite',
-          'ChatComposite',
-          'Adapters',
-          'Cross-Framework Support',
-        ],
-        COMPONENT_FOLDER_PREFIX,
-        [
-          'Overview',
-          'Get Started',
-          'Video Gallery',
-          'Video Tile',
-          'Grid Layout',
-          'Control Bar',
-          'Message Thread',
-          'Send Box',
-          'Message Status Indicator',
-          'Typing Indicator',
-          'Participant Item',
-          'Participant List',
-        ],
-        CONCEPTS_FOLDER_PREFIX,
-        [
-          'Styling',
-          'Theming',
-          'Icons',
-          'Localization',
-          'Accessibility',
-          'Custom User Data Model',
-          'Error Handling',
-          'Best Practices',
-          'Troubleshooting',
-          'Identity',
-          'Rooms',
-          'Communication as Teams user',
-          'Adhoc calling',
-          'Transfer',
-          'Video Effects'
-        ],
-        EXAMPLES_FOLDER_PREFIX,
-        [
-          "Device Settings",
-          "Local Preview",
-          "Themes",
-          "Teams Interop",
-          [
-            "Compliance Banner",
-            "Lobby",
-            "Inline Image",
-          ],
-          "Incoming Call Alerts"
-        ],  
-        STATEFUL_CLIENT_PREFIX,
-        [
-          'Overview',
-          'Get Started (Call)',
-          'Get Started (Chat)',
-          'Best Practices',
-          'React Hooks',
-          [
-            'Setting up',
-            'UsePropsFor',
-            'UseSelector'
-          ],
-        ],
-      ]
-    // }
+    toc: true
   },
   viewMode: 'docs',
   previewTabs: {
@@ -109,6 +35,10 @@ export const parameters = {
     }
   }
 };
+
+export default {
+  parameters: parameters
+}
 
 const withThemeProvider = (Story: any, context: any) => {
   const themeName = context.globals.theme as string;
@@ -167,7 +97,7 @@ const withCenterStory = (Story: any) => {
   );
 };
 
-export const decorators = [withCenterStory, withThemeProvider, withLocalization];
+export const decorators = [withThemeProvider, withLocalization];
 
 export const globalTypes = {
   theme: {

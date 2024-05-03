@@ -1,6 +1,8 @@
-import { Canvas, Meta } from '@storybook/blocks';
+import { Canvas, Meta, Source } from '@storybook/blocks';
 import { LiveExample } from './LiveExample.stories';
 import { Preview } from './PreviewCallComposite.stories';
+
+import containerText from '!!raw-loader!./snippets/Container.snippet.tsx';
 
 <Meta title="Composites/CallComposite" />
 
@@ -14,6 +16,13 @@ Below is an interactive example of the CallComposite in a simulated environment:
 
 <Canvas of={Preview} />
 
-## Join Example
+## Basic Usage
+
+There are two parts to the composite - a `CallComposite` react component and a `CallAdapter` that connects the react component to the backend APIs.
+The key thing to note is that initialization of `CallAdapter` is asynchronous. Thus, the initialization step requires special handling, as the example code below shows.
+
+<Source code={containerText} language="tsx" />
+
+## Join Example (just for testing)
 
 <Canvas of={LiveExample} />
