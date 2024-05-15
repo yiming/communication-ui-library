@@ -3,106 +3,42 @@
 
 import { FluentThemeProvider, LocalizationProvider } from '@azure/communication-react';
 import { Anchor, DocsContainer } from '@storybook/addon-docs';
+import type { Preview } from '@storybook/react';
 import React from 'react';
 
 import { THEMES } from '../stories/themes';
 import { LOCALES } from '../stories/locales'
 
-export const parameters = {
-  layout: 'fullscreen',
-  docs: {
-    container: props => (
-      <DocsContainer context={props.context}>
-        <Anchor storyId={props.context.id} />
-        {props.children}
-      </DocsContainer>
-    ),
-  },
-  options: {
-    storySort: {
-      order: [
-        'Overview',
-        'Use Cases',
-        'Feedback',
-        'Composites',
-        [
-          'Get Started',
-          'CallWithChatComposite',
-          'CallComposite',
-          'ChatComposite',
-          'Adapters',
-          'Cross-Framework Support',
-        ],
-        'UI Components',
-        [
-          'Overview',
-          'Get Started',
-          'Video Gallery',
-          'Video Tile',
-          'Grid Layout',
-          'Control Bar',
-          'Message Thread',
-          'Send Box',
-          'Message Status Indicator',
-          'Typing Indicator',
-          'Participant Item',
-          'Participant List',
-        ],
-        'Concepts',
-        [
-          'Styling',
-          'Theming',
-          'Icons',
-          'Localization',
-          'Accessibility',
-          'Custom User Data Model',
-          'Error Handling',
-          'Best Practices',
-          'Troubleshooting',
-          'Identity',
-          'Rooms',
-          'Communication as Teams user',
-          'Adhoc calling',
-          'Transfer',
-          'Video Effects'
-        ],
-       'Examples',
-        [
-          "Device Settings",
-          "Local Preview",
-          "Themes",
-          "Teams Interop",
-          [
-            "Compliance Banner",
-            "Lobby",
-            "Inline Image",
-          ],
-          "Incoming Call Alerts"
-        ],  
-        'Stateful Client',
-        [
-          'Overview',
-          'Get Started (Call)',
-          'Get Started (Chat)',
-          'Best Practices',
-          'React Hooks',
-          [
-            'Setting up',
-            'UsePropsFor',
-            'UseSelector'
-          ],
-        ],
-      ]
-    }
-  },
-  viewMode: 'docs',
-  previewTabs: {
-    'storybook/docs/panel': { index: -1 },
-    'canvas': {
-      title: 'Preview'
+export const preview: Preview = {
+  parameters: {
+    layout: 'fullscreen',
+    // docs: {
+    //   container: props => (
+    //     <DocsContainer context={props.context}>
+    //       <Anchor storyId={props.context.id} />
+    //       {props.children}
+    //     </DocsContainer>
+    //   ),
+    // },
+    docs: {
+      toc: {
+        title: 'On this page',
+        headingSelector: 'h2, h3'
+      }
+    },
+    options: {
+      storySort: {
+        order: [
+          'Composites',
+          ['Get Started'],
+          'Components'
+        ]
+      }
     }
   }
 };
+
+export default preview;
 
 const withThemeProvider = (Story: any, context: any) => {
   const themeName = context.globals.theme as string;
@@ -154,14 +90,14 @@ const withCenterStory = (Story: any) => {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      height: '100vh'
+      // height: '100vh'
     }}>
       <Story />
     </div>
   );
 };
 
-export const decorators = [withCenterStory, withThemeProvider, withLocalization];
+export const decorators = [withThemeProvider, withLocalization];
 
 export const globalTypes = {
   theme: {

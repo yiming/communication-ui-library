@@ -1,0 +1,28 @@
+import { Canvas, Meta, Source } from '@storybook/blocks';
+import { LiveExample } from './LiveExample.stories';
+import { Preview } from './PreviewCallComposite.stories';
+
+import containerText from '!!raw-loader!./snippets/Container.snippet.tsx';
+
+<Meta title="Composites/CallComposite" />
+
+# CallComposite
+
+The CallComposite provides a calling experience that allows users to start or join a call. Inside the experience
+users can configure their devices, participate in the call with video and see other participants, including
+those with video turned on.
+
+Below is an interactive example of the CallComposite in a simulated environment:
+
+<Canvas of={Preview} />
+
+## Basic Usage
+
+There are two parts to the composite - a `CallComposite` react component and a `CallAdapter` that connects the react component to the backend APIs.
+The key thing to note is that initialization of `CallAdapter` is asynchronous. Thus, the initialization step requires special handling, as the example code below shows.
+
+<Source code={containerText} language="tsx" />
+
+## Join Example (just for testing)
+
+<Canvas of={LiveExample} />
