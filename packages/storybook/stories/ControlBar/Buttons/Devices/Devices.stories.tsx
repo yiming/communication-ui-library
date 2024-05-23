@@ -53,10 +53,11 @@ const getDocs: () => JSX.Element = () => {
         <DevicesButtonWithLabelExample />
       </Canvas>
 
-      <Heading>Custom DevicesButton Styles</Heading>
+      <Heading>Custom DevicesButton styles</Heading>
       <Description>
-        You can change the styles of the `DevicesButton` as you would customized any Button (styles, primary,
-        onRenderIcon, onRenderText, etc... ).
+        You can change the styles of the `DevicesButton` as you would through the `styles` property. You can also use
+        the callback properties `onRenderIcon` and `onRenderText` to change what is rendered for the icon and the text
+        respectively.
       </Description>
       <Description>
         Note: When overriding a render, like using `onRenderIcon` or `onRenderText`, do not forget to add a unique key
