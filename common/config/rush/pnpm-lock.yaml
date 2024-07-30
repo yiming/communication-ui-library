@@ -24771,7 +24771,7 @@ packages:
     dev: false
 
   file:projects/acs-ui-common.tgz:
-    resolution: {integrity: sha512-36aUZX+24nr5DmBNeRzos1T23jw+FYN0P5oao5Qay1O6dY5HsrSlodnXO3jmPKViN5XBnWydgMFRnEYWgOdjVg==, tarball: file:projects/acs-ui-common.tgz}
+    resolution: {integrity: sha512-GUMrFF+znaZJaNOdNpJVmI8ZJQ9XlqJIIWQC2Wt25IyeFpo9xW2lYJ4gcmPWG+1ZqF1mjWe5C7Vu5TYY3MfRPg==, tarball: file:projects/acs-ui-common.tgz}
     name: '@rush-temp/acs-ui-common'
     version: 0.0.0
     dependencies:
@@ -24797,6 +24797,7 @@ packages:
       eslint-plugin-prettier: 5.1.3(eslint-config-prettier@9.1.0)(eslint@8.57.0)(prettier@3.3.2)
       if-env: 1.0.4
       jest: 29.7.0(@types/node@20.14.8)(ts-node@10.9.2)
+      mobile-detect: 1.4.5
       prettier: 3.3.2
       react: 18.3.1
       rimraf: 2.7.1
@@ -24817,7 +24818,7 @@ packages:
     dev: false
 
   file:projects/acs-ui-javascript-loaders.tgz:
-    resolution: {integrity: sha512-H1yhuwLs/YH6GZu8cH8+AnmQ+EWgm/svVm36jN450b0/QbVM7fzF9c/dEND57jwTb7R5ketu2h+uR+PLnx0uag==, tarball: file:projects/acs-ui-javascript-loaders.tgz}
+    resolution: {integrity: sha512-6MTrC9ddiXhn07GgWMfCSwHaRaQLn5BnwGxhMsCqFf5luOi4PFaTCVtLZg7kKSaU3+4EUm7ypDZtSpG2F1cPYw==, tarball: file:projects/acs-ui-javascript-loaders.tgz}
     name: '@rush-temp/acs-ui-javascript-loaders'
     version: 0.0.0
     dependencies:
@@ -24843,6 +24844,7 @@ packages:
       eslint-plugin-prettier: 5.1.3(eslint-config-prettier@9.1.0)(eslint@8.57.0)(prettier@3.3.2)
       if-env: 1.0.4
       jest: 29.7.0(@types/node@20.14.8)(ts-node@10.9.2)
+      mobile-detect: 1.4.5
       prettier: 3.3.2
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
@@ -24864,7 +24866,7 @@ packages:
     dev: false
 
   file:projects/calling-component-bindings.tgz:
-    resolution: {integrity: sha512-u8U+/6NNYsG0DXqhfC9kJk/cxeo48P32F4YXuIKBpNX++Ksanh9DQnOHRnmlVy/eZxYvcZAf1sHIDRaZ15rIqw==, tarball: file:projects/calling-component-bindings.tgz}
+    resolution: {integrity: sha512-om7vOWZxtHFCLJXEGktxHq1aYHTnNJUSwdiBZtmMkkz5kh7vdanHq8F7T+0xyR6puvy4sOCodaJwTs4Wc9/c+g==, tarball: file:projects/calling-component-bindings.tgz}
     name: '@rush-temp/calling-component-bindings'
     version: 0.0.0
     dependencies:
@@ -24892,6 +24894,7 @@ packages:
       if-env: 1.0.4
       jest: 29.7.0(@types/node@20.14.8)(ts-node@10.9.2)
       memoize-one: 5.2.1
+      mobile-detect: 1.4.5
       prettier: 3.3.2
       react: 18.3.1
       reselect: 4.1.8
@@ -24913,7 +24916,7 @@ packages:
     dev: false
 
   file:projects/calling-stateful-client.tgz:
-    resolution: {integrity: sha512-bKOpQPmxzTVPnjODPBv/R/m66rZL5XhHSEDgv4BknRn5yDyF86bb/Y+hBtxudKbOb7UPxcvSstHgYBSzRbU3BQ==, tarball: file:projects/calling-stateful-client.tgz}
+    resolution: {integrity: sha512-OAM/TfyVEXg5QVmxUShhfkxkJ6o4ScP9Qy1DgTYxiqMcUZ8qIKRmCDjdY9J8Z4k5UVc/6l+z/lE6Gc3FM/913g==, tarball: file:projects/calling-stateful-client.tgz}
     name: '@rush-temp/calling-stateful-client'
     version: 0.0.0
     dependencies:
@@ -24943,6 +24946,7 @@ packages:
       if-env: 1.0.4
       immer: 10.1.1
       jest: 29.7.0(@types/node@20.14.8)(ts-node@10.9.2)
+      mobile-detect: 1.4.5
       prettier: 3.3.2
       rimraf: 2.7.1
       rollup: 4.12.1
@@ -24962,7 +24966,7 @@ packages:
     dev: false
 
   file:projects/calling.tgz:
-    resolution: {integrity: sha512-4H+VJj5LiXZ0q5MdqzhE5o9sG12FHjx9zhukQBcMchWKMlcQHbEGMlk+I2eVkKqPp77/i/OdBYSOsuWBzgyFnQ==, tarball: file:projects/calling.tgz}
+    resolution: {integrity: sha512-VduVOkGDi1V2EuEGVhmEX/N4aY6dglOazCf+GZ42+cfURtl8GjctL4EYdUBt8D7ehpfrns90Re8e72Rc1RR20A==, tarball: file:projects/calling.tgz}
     name: '@rush-temp/calling'
     version: 0.0.0
     dependencies:
@@ -25056,7 +25060,7 @@ packages:
     dev: false
 
   file:projects/callingstateful.tgz:
-    resolution: {integrity: sha512-Huc8eBChlD4jYoW9sEDT9a2pfNBG5WRe6slnqV2pgCyckA0Xnmoqd+6pL8M68/szwjCbTff9m939gLxzVC223Q==, tarball: file:projects/callingstateful.tgz}
+    resolution: {integrity: sha512-Qy5McwNr2PW5wtOeJKJkEWTSGmIwD14hgjT9eC1Ac3vuvCRkfwZRYHpjdMGlfEFj15zmDAloxTCbRaM+Jd4srg==, tarball: file:projects/callingstateful.tgz}
     name: '@rush-temp/callingstateful'
     version: 0.0.0
     dependencies:
@@ -25150,7 +25154,7 @@ packages:
     dev: false
 
   file:projects/callwithchat.tgz:
-    resolution: {integrity: sha512-VLPk4MJiUikeevgWzoeDqCNGIro7BtJGyVmPhPNbw441gTZLJa+aO3KVntw19iRQccY4M6e+HMubaOMc2607sg==, tarball: file:projects/callwithchat.tgz}
+    resolution: {integrity: sha512-j2DDKJQ3rD/hSXzXfx17qMZYbXOy7wfHsx/ELJViPAIDosdUCYWoEMBrcNXXyVzoiNI9rM0WhnJiZA31ZAiG4Q==, tarball: file:projects/callwithchat.tgz}
     name: '@rush-temp/callwithchat'
     version: 0.0.0
     dependencies:
@@ -25243,7 +25247,7 @@ packages:
     dev: false
 
   file:projects/chat-component-bindings.tgz:
-    resolution: {integrity: sha512-xG7OrXthKetKNH3VGC1/b2NALv5kEaDS1qIY9YT061lh2ti/WVCsXlPWy+vbuABj+0aJW0gPTVpUg4U578yAmw==, tarball: file:projects/chat-component-bindings.tgz}
+    resolution: {integrity: sha512-euqJGzUaYhlCHxfTNNOWj21OcwkBmsOS9MnOp1yfOS4NeD8mXmQTWqBUfAaQPZV9T3OAU7S5R/Sf3xMU52X4Bw==, tarball: file:projects/chat-component-bindings.tgz}
     name: '@rush-temp/chat-component-bindings'
     version: 0.0.0
     dependencies:
@@ -25269,6 +25273,7 @@ packages:
       if-env: 1.0.4
       jest: 29.7.0(@types/node@20.14.8)(ts-node@10.9.2)
       memoize-one: 5.2.1
+      mobile-detect: 1.4.5
       prettier: 3.3.2
       react: 18.3.1
       reselect: 4.1.8
@@ -25286,7 +25291,7 @@ packages:
     dev: false
 
   file:projects/chat-stateful-client.tgz:
-    resolution: {integrity: sha512-wlRtMwvqk9NqWSALzXg7ThR6xPYAzxdRSHeX020pDp3XlYTQtpKjZwBn83x/fyjY9vCEW+G3nMFNpUzLy2PT/w==, tarball: file:projects/chat-stateful-client.tgz}
+    resolution: {integrity: sha512-5eREu/qb5bYLNXVsNogjVtevG8m9uV0hOKekpD3fPg7Jsg1F2Few9AYVmsuYpLt4ISGcmIrWVjMBz9y+MzMTkw==, tarball: file:projects/chat-stateful-client.tgz}
     name: '@rush-temp/chat-stateful-client'
     version: 0.0.0
     dependencies:
@@ -25317,6 +25322,7 @@ packages:
       if-env: 1.0.4
       immer: 10.1.1
       jest: 29.7.0(@types/node@20.14.8)(ts-node@10.9.2)
+      mobile-detect: 1.4.5
       nanoid: 3.3.6
       prettier: 3.3.2
       rimraf: 2.7.1
@@ -25338,7 +25344,7 @@ packages:
     dev: false
 
   file:projects/chat.tgz:
-    resolution: {integrity: sha512-tLzBnr5h7UzNCYnnFparLOuSPU0g531w6tHV3jTTZ3Y4dZz4r+BUl1uF7mRRQME9QbT59qfrzDXo087BrtAnGQ==, tarball: file:projects/chat.tgz}
+    resolution: {integrity: sha512-jTXz2htPCqavO3XplfEL/0aWRIXRd7Q4yTB7O83zRvoid5CS1ZllLkPZu7eC0xhweFqjkITPktzwiaYJBuMBfQ==, tarball: file:projects/chat.tgz}
     name: '@rush-temp/chat'
     version: 0.0.0
     dependencies:
@@ -25427,7 +25433,7 @@ packages:
     dev: false
 
   file:projects/check-treeshaking.tgz:
-    resolution: {integrity: sha512-05alRVrAc6jb+sUVJYjTWFdVAvHwrCotwC9XuiTEdKHiCYxqFdiXuxKeLE5wk/OaG7FEysk3m+XoxuXVEUJlhA==, tarball: file:projects/check-treeshaking.tgz}
+    resolution: {integrity: sha512-4k7okX9fuIPBtWufzeOcn31jWmKzT66Pw2sev5zJmaQX5hqXJaoHhkEQwQzANH2N7knBsx9tWIeZmMymhelhcw==, tarball: file:projects/check-treeshaking.tgz}
     name: '@rush-temp/check-treeshaking'
     version: 0.0.0
     dependencies:
@@ -25439,6 +25445,7 @@ packages:
       eslint-plugin-header: 3.1.1(eslint@8.57.0)
       eslint-plugin-import: 2.29.1(eslint@8.57.0)
       eslint-plugin-prettier: 5.1.3(eslint-config-prettier@9.1.0)(eslint@8.57.0)(prettier@3.3.2)
+      mobile-detect: 1.4.5
       prettier: 3.3.2
       rimraf: 2.7.1
       webpack: 5.89.0(webpack-cli@5.1.4)
@@ -25455,7 +25462,7 @@ packages:
     dev: false
 
   file:projects/check-typescript-regression.tgz:
-    resolution: {integrity: sha512-tHDWE/8JLsEGYkK1ooJ4PmSxII/wqeBrIB+oMwmVyDri5IJfnIB5uG2LZpK9D2CWxytQ8B8H5b6mo3wMy7OIyg==, tarball: file:projects/check-typescript-regression.tgz}
+    resolution: {integrity: sha512-j1MtSBS87XWrr4NLhoGYEOTNuPz/hJN0/MWjCD/mGxBBApX3oUBrJnwD5o6/1Xjxidp59B/GBIX6uI9hOHuKqA==, tarball: file:projects/check-typescript-regression.tgz}
     name: '@rush-temp/check-typescript-regression'
     version: 0.0.0
     dependencies:
@@ -25464,6 +25471,7 @@ packages:
       eslint-plugin-header: 3.1.1(eslint@8.57.0)
       eslint-plugin-import: 2.29.1(eslint@8.57.0)
       eslint-plugin-prettier: 5.1.3(eslint-config-prettier@9.1.0)(eslint@8.57.0)(prettier@3.3.2)
+      mobile-detect: 1.4.5
       prettier: 3.3.2
       rimraf: 2.7.1
       typescript: 4.6.3
@@ -25473,7 +25481,7 @@ packages:
     dev: false
 
   file:projects/communication-react.tgz:
-    resolution: {integrity: sha512-8u5/bkLi5iFGQMOXws2Qyyt3iKkx98Qcrq3otLlo0JrI8fOPtO/3i3nDpVSllG4WS7ribYyR0iP+96GPsQDjLg==, tarball: file:projects/communication-react.tgz}
+    resolution: {integrity: sha512-rAoiyrIToBB4xhhKiRidtGOm4RRNhUyiIYzVnuYFaMgScdh52pleDhRVEWbuEE7lROGWv3AisLdZXhmzAVgnkQ==, tarball: file:projects/communication-react.tgz}
     name: '@rush-temp/communication-react'
     version: 0.0.0
     dependencies:
@@ -25533,6 +25541,7 @@ packages:
       jest: 29.7.0(@types/node@20.14.8)(ts-node@10.9.2)
       json-stringify-safe: 5.0.1
       memoize-one: 5.2.1
+      mobile-detect: 1.4.5
       nanoid: 3.3.6
       node-forge: 1.3.1
       prettier: 3.3.2
@@ -25589,7 +25598,7 @@ packages:
     dev: false
 
   file:projects/component-examples.tgz:
-    resolution: {integrity: sha512-/nPNeibCtITY//nWrCmjHgUlonkKQ9NRiLVJilXefmepHAKk1d+690L6A4mbjclaBMAS4nb7ariy1CAslH/sGQ==, tarball: file:projects/component-examples.tgz}
+    resolution: {integrity: sha512-/cSR7F3Uj7yB9ZbmskOPmlB9niSP35tsiti2GguAG/QfNEWiPTCZRXBkLmJqXM2b3gL2vy8ycAtYOOvZRDd7ew==, tarball: file:projects/component-examples.tgz}
     name: '@rush-temp/component-examples'
     version: 0.0.0
     dependencies:
@@ -25623,6 +25632,7 @@ packages:
       html-webpack-plugin: 5.6.0(webpack@5.89.0)
       husky: 8.0.3
       if-env: 1.0.4
+      mobile-detect: 1.4.5
       prettier: 3.3.2
       pretty-quick: 4.0.0(prettier@3.3.2)
       react: 18.3.1
@@ -25656,7 +25666,7 @@ packages:
     dev: false
 
   file:projects/config.tgz:
-    resolution: {integrity: sha512-sQUALoMgzZXT+TaynsZyTiOAtXR59X33/SOnaOvQb1x666rjBZkkkSCCiqAehe85JNzVom4vZU4VsSaijhQhPA==, tarball: file:projects/config.tgz}
+    resolution: {integrity: sha512-6Upr+lx3MP9CE9m0G1Rym8NLBAnermvOwetiGPLQeAPaQtXcBQ0EePS+HVN5p07MB/Z0lHYMBLaZs1Z1LeHF9A==, tarball: file:projects/config.tgz}
     name: '@rush-temp/config'
     version: 0.0.0
     dependencies:
@@ -25667,6 +25677,7 @@ packages:
       '@rollup/plugin-json': 6.1.0(rollup@4.12.1)
       '@types/node': 20.14.8
       beachball: 2.31.13
+      mobile-detect: 1.4.5
       rollup: 4.12.1
       rollup-plugin-sourcemaps: 0.6.3(@types/node@20.14.8)(rollup@4.12.1)
       rollup-plugin-svg: 2.0.0
@@ -25679,7 +25690,7 @@ packages:
     dev: false
 
   file:projects/fake-backends.tgz:
-    resolution: {integrity: sha512-he0FAr2WNjhCMvMeYbuP45e3e6ggxQ3KYMwkDLOjaC7MyO64HmCMBv9HFsMyrFJnvuHG9YvfuBFMLGLPIH9oTg==, tarball: file:projects/fake-backends.tgz}
+    resolution: {integrity: sha512-AVWv2pJ/IShaO/oTRgOm9pC9njPso3j99Pe5F2RiLOuagZEbZjl/vgl+MgU57GRWBzkPqGLfgzYw2qanhZpTEg==, tarball: file:projects/fake-backends.tgz}
     name: '@rush-temp/fake-backends'
     version: 0.0.0
     dependencies:
@@ -25711,6 +25722,7 @@ packages:
       if-env: 1.0.4
       immer: 10.1.1
       jest: 29.7.0(@types/node@20.14.8)(ts-node@10.9.2)
+      mobile-detect: 1.4.5
       nanoid: 3.3.6
       prettier: 3.3.2
       rimraf: 2.7.1
@@ -25735,7 +25747,7 @@ packages:
     dev: false
 
   file:projects/react-components.tgz:
-    resolution: {integrity: sha512-QLYD2J1sl/Idp+wj9A5NdafjngAjA8a5afmciI45oQPUpiANH22zOHTrjwKGeVHguXBp+fbw7N98JTdHx11jhQ==, tarball: file:projects/react-components.tgz}
+    resolution: {integrity: sha512-XhBg6BHd5Nc58uwkhy0Wv+ftbLGolfWA/361iqN7i+QQOt+4WVwtiDC4VOJf7JLkMVPWLs8eO6dP2YyrC5xzfQ==, tarball: file:projects/react-components.tgz}
     name: '@rush-temp/react-components'
     version: 0.0.0
     dependencies:
@@ -25797,6 +25809,7 @@ packages:
       jest-fetch-mock: 3.0.3
       jest-junit: 16.0.0
       json-stringify-safe: 5.0.1
+      mobile-detect: 1.4.5
       nan: 2.19.0
       node-forge: 1.3.1
       playwright-core: 1.39.0
@@ -25861,7 +25874,7 @@ packages:
     dev: false
 
   file:projects/react-composites.tgz:
-    resolution: {integrity: sha512-cP2CeA0+8pEKXiw7/UauZWEFHBUCckIWuh5DPik2kbn6ggPMePhTQKu2O8POlkGVe6e/OuknxiTxN105gKi5IA==, tarball: file:projects/react-composites.tgz}
+    resolution: {integrity: sha512-NTgD8olLh8KDyDiw1tO6BnmCcrN+U1LlXCRjqTYWIk9U3rjgNXHYtqo2SpE0Pdmk204r0UNA59MpWVZgLr9IIg==, tarball: file:projects/react-composites.tgz}
     name: '@rush-temp/react-composites'
     version: 0.0.0
     dependencies:
@@ -25932,6 +25945,7 @@ packages:
       jest-junit: 16.0.0
       json-stringify-safe: 5.0.1
       memoize-one: 5.2.1
+      mobile-detect: 1.4.5
       nan: 2.19.0
       nanoid: 3.3.6
       node-forge: 1.3.1
@@ -25983,7 +25997,7 @@ packages:
     dev: false
 
   file:projects/sample-automation-tests.tgz:
-    resolution: {integrity: sha512-La0T5bkqes2kT/b4RPgh4v0OR4YZdyEyCNDAZYS+DhwPCWlR4z/HBI26IetIHPYVDLgPr0P7wdvs8nzF/4l4GQ==, tarball: file:projects/sample-automation-tests.tgz}
+    resolution: {integrity: sha512-Dk0qUA+2JVJWhRNunNbApGwslFWt6v3x7yJ5Up5VY8gVp/oCuHWUxAu3zU+dG+h9nJKV1D2TVQYuZCd0VSMk6A==, tarball: file:projects/sample-automation-tests.tgz}
     name: '@rush-temp/sample-automation-tests'
     version: 0.0.0
     dependencies:
@@ -25998,6 +26012,7 @@ packages:
       dotenv: 10.0.0
       env-cmd: 10.1.0
       if-env: 1.0.4
+      mobile-detect: 1.4.5
       node-static: 0.7.11
       rimraf: 2.7.1
       typescript: 5.4.5
@@ -26008,7 +26023,7 @@ packages:
     dev: false
 
   file:projects/sample-static-html-composites.tgz:
-    resolution: {integrity: sha512-MlFjKaEyzn4hq/8wyQMNfuBtTTZCAtNI7pdmwZ41Xkn2UCPpQvz3uReqU29oEmdxJlZQ3EOeS9GBEiUYoYqOdg==, tarball: file:projects/sample-static-html-composites.tgz}
+    resolution: {integrity: sha512-jq14fm2Uuo43JF15v+xhPGZp7MNBgnJvQ6rCvdxcwpzUyi+zgGB6fTC0Cvdr5GBQWaJwsbTj4wLxqjMF5vOnBg==, tarball: file:projects/sample-static-html-composites.tgz}
     name: '@rush-temp/sample-static-html-composites'
     version: 0.0.0
     dependencies:
@@ -26036,6 +26051,7 @@ packages:
       http: 0.0.1-security
       http-server: 0.12.3
       if-env: 1.0.4
+      mobile-detect: 1.4.5
       node-static: 0.7.11
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
@@ -26060,16 +26076,17 @@ packages:
     dev: false
 
   file:projects/scripts.tgz:
-    resolution: {integrity: sha512-etEablx5ljVhADQIRE5hIW0rcgMt2K8eQ1iTjXlDmK7izoFSCbcR8pBD5KRmNGqg47isbtKuNdcjEps6HJrRHg==, tarball: file:projects/scripts.tgz}
+    resolution: {integrity: sha512-OIhTR8RgRAfpppSSIQIjmX5fV+eebWMcZTLzoLf/UONWQqBQeSpt+xHibgV03yXp2lKO2bpFPcl/Wa+OJqRy6Q==, tarball: file:projects/scripts.tgz}
     name: '@rush-temp/scripts'
     version: 0.0.0
     dependencies:
       '@types/yargs': 17.0.32
+      mobile-detect: 1.4.5
       yargs: 17.7.2
     dev: false
 
   file:projects/server.tgz:
-    resolution: {integrity: sha512-6OxEJST5RPzTGG0oVwHYKJN738fN7030kJLQklzryi7aXz7F+ifC4gOt28DSPdqCrQ+KmqN7aEEP7HqxgUGiJg==, tarball: file:projects/server.tgz}
+    resolution: {integrity: sha512-si0lbWL43VsSvdJFhgFB+MbdwqU+a79JgIOnj/t/leTAR3/bKCHEwu3ofPZIwOizrsis9cAj706t9h4th18gkQ==, tarball: file:projects/server.tgz}
     name: '@rush-temp/server'
     version: 0.0.0
     dependencies:
@@ -26107,6 +26124,7 @@ packages:
       husky: 8.0.3
       jest: 29.7.0(@types/node@20.14.8)(ts-node@10.9.2)
       jest-junit: 16.0.0
+      mobile-detect: 1.4.5
       morgan: 1.10.0
       multer: 1.4.5-lts.1
       node-fetch: 2.6.7
@@ -26144,7 +26162,7 @@ packages:
     dev: false
 
   file:projects/storybook.tgz:
-    resolution: {integrity: sha512-l1I3FoBXY3xzLPLPD6NXaGhJ+IXjR4NjtaFHWPt8Dcxi/UVwLnJlkxtm0zo5bzm2Ch6sYgNdehkOMlsqmvijeg==, tarball: file:projects/storybook.tgz}
+    resolution: {integrity: sha512-POzorUiMDsGJxugwwLRnF1N0SzjeIbhhmeDSUYtrpWToELIn5P/s0l1tHA+SFJZjACi0/uHtLDCVSbacs0zh4A==, tarball: file:projects/storybook.tgz}
     name: '@rush-temp/storybook'
     version: 0.0.0
     dependencies:
@@ -26291,7 +26309,7 @@ packages:
     dev: false
 
   file:projects/storybook8.tgz:
-    resolution: {integrity: sha512-HoOFDtxBm2tX1jQkg8yrCLJT70tN9Lwi2Aq6XlYTiDJ+pA4j+eAiFvJI0CMwh6ObSQlg+aI5DMgbLT/Xtty+sA==, tarball: file:projects/storybook8.tgz}
+    resolution: {integrity: sha512-9EjtfZTddm4LNmBzHrsSZEHONBRK5sh4rfAUFUMJ8MPCqwX+ThP9Ca0GwrWDIhE11Q04CT10wZjvwhAL9SdyVQ==, tarball: file:projects/storybook8.tgz}
     name: '@rush-temp/storybook8'
     version: 0.0.0
     dependencies:
@@ -26361,6 +26379,7 @@ packages:
       jest-fetch-mock: 3.0.3
       jest-junit: 16.0.0
       json-stringify-safe: 5.0.1
+      mobile-detect: 1.4.5
       nan: 2.19.0
       node-forge: 1.3.1
       preact: 10.19.6

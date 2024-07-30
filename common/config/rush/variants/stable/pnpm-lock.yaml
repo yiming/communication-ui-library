@@ -25344,7 +25344,7 @@ packages:
     dev: false
 
   file:projects/communication-react.tgz:
-    resolution: {integrity: sha512-8u5/bkLi5iFGQMOXws2Qyyt3iKkx98Qcrq3otLlo0JrI8fOPtO/3i3nDpVSllG4WS7ribYyR0iP+96GPsQDjLg==, tarball: file:projects/communication-react.tgz}
+    resolution: {integrity: sha512-kzBSE4ZY83wFJmqOIHMINxDEg6DziuTvatoM6N8aFCLp06ZiGksAaeKF8WKpLo+NOmlxOJrQYeK9vrkmDz+G9A==, tarball: file:projects/communication-react.tgz}
     name: '@rush-temp/communication-react'
     version: 0.0.0
     dependencies:
@@ -25606,7 +25606,7 @@ packages:
     dev: false
 
   file:projects/react-components.tgz:
-    resolution: {integrity: sha512-QLYD2J1sl/Idp+wj9A5NdafjngAjA8a5afmciI45oQPUpiANH22zOHTrjwKGeVHguXBp+fbw7N98JTdHx11jhQ==, tarball: file:projects/react-components.tgz}
+    resolution: {integrity: sha512-ArWJzwg+y2VtDZjFbdGGG7LeI/yxnTfqigzLLxFqeurIRkhNnfiw1WUwj0GvwBiLe8BcbEMylUYDH6WHFAEIsg==, tarball: file:projects/react-components.tgz}
     name: '@rush-temp/react-components'
     version: 0.0.0
     dependencies:
@@ -26162,7 +26162,7 @@ packages:
     dev: false
 
   file:projects/storybook8.tgz:
-    resolution: {integrity: sha512-HoOFDtxBm2tX1jQkg8yrCLJT70tN9Lwi2Aq6XlYTiDJ+pA4j+eAiFvJI0CMwh6ObSQlg+aI5DMgbLT/Xtty+sA==, tarball: file:projects/storybook8.tgz}
+    resolution: {integrity: sha512-w0RLFADVDw7tvz88bJmtjlLOZVyWwGndScCtsE5O6eJIpxU802Soer0ebIle1GVOFnOI7DPwLTSCtqhAt0SFMA==, tarball: file:projects/storybook8.tgz}
     name: '@rush-temp/storybook8'
     version: 0.0.0
     dependencies:
@@ -26232,6 +26232,7 @@ packages:
       jest-fetch-mock: 3.0.3
       jest-junit: 16.0.0
       json-stringify-safe: 5.0.1
+      mobile-detect: 1.4.5
       nan: 2.19.0
       node-forge: 1.3.1
       preact: 10.19.6
