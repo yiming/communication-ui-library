@@ -514,8 +514,6 @@ export const CommonCallControlBar = (props: CommonCallControlBarProps & Containe
                       }
                       /* @conditional-compile-remove(breakout-rooms) */
                       returnFromBreakoutRoom={canReturnToMainMeeting ? returnFromBreakoutRoom : undefined}
-                      /* @conditional-compile-remove(breakout-rooms) */
-                      hangUpOriginCall={canReturnToMainMeeting ? hangUpOriginCall : undefined}
                     />
                   </ControlBar>
                 </div>

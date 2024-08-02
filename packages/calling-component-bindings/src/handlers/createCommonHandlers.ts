@@ -55,6 +55,7 @@ export interface CommonCallingHandlers {
   onStopScreenShare: () => Promise<void>;
   onToggleScreenShare: () => Promise<void>;
   onHangUp: (forEveryone?: boolean) => Promise<void>;
+  onHangUpOriginCall: () => Promise<void>;
   onRaiseHand: () => Promise<void>;
   onLowerHand: () => Promise<void>;
   onToggleRaiseHand: () => Promise<void>;
@@ -143,7 +144,8 @@ export const createDefaultCommonCallingHandlers = memoizeOne(
     call: Call | /* @conditional-compile-remove(teams-identity-support) */ TeamsCall | undefined,
     options?: {
       onResolveVideoBackgroundEffectsDependency?: () => Promise<VideoBackgroundEffectsDependency>;
-    }
+    },
+    originCall?: Call | /* @conditional-compile-remove(teams-identity-support) */ TeamsCall | undefined
   ): CommonCallingHandlers & Partial<_ComponentCallingHandlers> => {
     const onStartLocalVideo = async (): Promise<void> => {
       // Before the call object creates a stream, dispose of any local preview streams.
@@ -345,6 +347,8 @@ export const createDefaultCommonCallingHandlers = memoizeOne(
 
     const onHangUp = async (forEveryone?: boolean): Promise<void> =>
       await call?.hangUp({ forEveryone: forEveryone === true ? true : false });
+
+    const onHangUpOriginCall = async (): Promise<void> => await originCall?.hangUp();
 
     /* @conditional-compile-remove(PSTN-calls) */
     const onToggleHold = async (): Promise<void> =>
@@ -649,6 +653,7 @@ export const createDefaultCommonCallingHandlers = memoizeOne(
 
     return {
       onHangUp,
+      onHangUpOriginCall,
       /* @conditional-compile-remove(PSTN-calls) */
       onToggleHold,
       onSelectCamera,

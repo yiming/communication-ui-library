@@ -47,6 +47,8 @@ export interface EndCallButtonProps extends ControlBarButtonProps {
    */
   onHangUp?: (forEveryone?: boolean) => Promise<void>;
 
+  onHangUpOriginCall?: () => Promise<void>;
+
   /* @conditional-compile-remove(end-call-options) */
   /**
    * Set this to true to make it a split button.
@@ -127,12 +129,48 @@ export const EndCallButton = (props: EndCallButtonProps): JSX.Element => {
     }
   };
 
+  const breakoutRoomsMenuProps: IContextualMenuProps | undefined = props.onHangUpOriginCall
+    ? {
+        items: [
+          {
+            key: 'endForSelf',
+            text: localeStrings.leaveOption,
+            title: localeStrings.leaveOption,
+            onClick: () => {
+              onHangUp?.(false);
+            }
+          },
+          {
+            key: 'endForEveryone',
+            text: 'Leave meeting',
+            title: 'Leave meeting',
+            onClick: () => {
+              props.onHangUpOriginCall?.().then(() => {
+                onHangUp?.(false);
+              });
+            }
+          }
+        ],
+        styles: props.styles,
+        calloutProps: {
+          styles: {
+            root: {
+              maxWidth: '95%'
+            }
+          },
+          preventDismissOnEvent
+        }
+      }
+    : undefined;
+
   return (
     <>
       <ControlBarButton
         {...props}
         /* @conditional-compile-remove(end-call-options) */
-        menuProps={enableEndCallMenu ? defaultMenuProps : props.menuProps}
+        menuProps={
+          breakoutRoomsMenuProps ? breakoutRoomsMenuProps : enableEndCallMenu ? defaultMenuProps : props.menuProps
+        }
         onClick={onHangUp ? () => onHangUp() : props.onClick}
         styles={componentStyles}
         onRenderIcon={props.onRenderIcon ?? onRenderEndCallIcon}

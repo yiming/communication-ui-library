@@ -74,8 +74,10 @@ export type CreateDefaultCallingHandlers = (
  */
 export const createDefaultCallingHandlers: CreateDefaultCallingHandlers = memoizeOne((...args) => {
   const [callClient, callAgent, deviceManager, call, options] = args;
+  const callState = call?.id ? callClient.getState().calls[call.id] : undefined;
+  const originCall = callAgent?.calls.find((_call) => _call.id === callState?.breakoutRooms?.breakoutRoomOriginCallId);
   return {
-    ...createDefaultCommonCallingHandlers(callClient, deviceManager, call, options),
+    ...createDefaultCommonCallingHandlers(callClient, deviceManager, call, options, originCall),
     // FIXME: onStartCall API should use string, not the underlying SDK types.
     onStartCall: (participants: CommunicationIdentifier[], options?: StartCallOptions): Call | undefined => {
       /* @conditional-compile-remove(teams-adhoc-call) */

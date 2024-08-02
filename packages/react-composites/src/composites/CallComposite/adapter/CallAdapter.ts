@@ -487,6 +487,7 @@ export interface CallAdapterCallOperations {
    * @public
    */
   leaveCall(forEveryone?: boolean): Promise<void>;
+  hangUpOriginCall(): Promise<void>;
   /**
    * Start the camera
    * This method will start rendering a local camera view when the call is not active

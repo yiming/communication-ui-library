@@ -87,7 +87,9 @@
     "label": "Leave",
     "tooltipContent": "Leave call",
     "leaveOption": "Leave",
-    "endCallOption": "End call for everyone"
+    "endCallOption": "End call for everyone",
+    "leaveBreakoutRoomOption": "Leave breakout room",
+    "leaveBreakoutRoomAndOriginCallOption": "Leave meeting"
   },
   "cameraButton": {
     "onLabel": "Camera",
@@ -172,6 +174,9 @@
     "laughReactionTooltipContent": "Laugh",
     "applauseReactionTooltipContent": "Applause",
     "surprisedReactionTooltipContent": "Surprised"
+  },
+  "joinBreakoutRoomButton": {
+    "label": "Join breakout room"
   },
   "messageThread": {
     "yesterday": "Yesterday",
