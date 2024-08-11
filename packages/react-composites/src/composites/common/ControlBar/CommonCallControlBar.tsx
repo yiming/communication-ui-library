@@ -52,7 +52,11 @@ import { isBoolean } from '../utils';
 /* @conditional-compile-remove(end-call-options) */
 import { getIsTeamsCall } from '../../CallComposite/selectors/baseSelectors';
 /* @conditional-compile-remove(breakout-rooms) */
-import { getAssignedBreakoutRoom, getBreakoutRoomSettings } from '../../CallComposite/selectors/baseSelectors';
+import {
+  getAssignedBreakoutRoom,
+  getBreakoutRoomSettings,
+  getLatestNotifications
+} from '../../CallComposite/selectors/baseSelectors';
 import { callStatusSelector } from '../../CallComposite/selectors/callStatusSelector';
 /* @conditional-compile-remove(teams-meeting-conference) */
 import { MeetingConferencePhoneInfoModal } from '@internal/react-components';
@@ -144,6 +148,8 @@ export const CommonCallControlBar = (props: CommonCallControlBarProps & Containe
 
   /* @conditional-compile-remove(breakout-rooms) */
   const assignedBreakoutRoom = useSelector(getAssignedBreakoutRoom);
+  /* @conditional-compile-remove(breakout-rooms) */
+  const latestNotifications = useSelector(getLatestNotifications);
   /* @conditional-compile-remove(breakout-rooms) */
   const breakoutRoomSettings = useSelector(getBreakoutRoomSettings);
 
@@ -368,15 +374,18 @@ export const CommonCallControlBar = (props: CommonCallControlBarProps & Containe
                   <ControlBar layout={props.displayVertical ? 'vertical' : 'horizontal'} styles={centerContainerStyles}>
                     {
                       /* @conditional-compile-remove(breakout-rooms) */
-                      assignedBreakoutRoom && assignedBreakoutRoom.state === 'open' && (
-                        <PrimaryButton
-                          text={callStrings.joinBreakoutRoomButtonLabel}
-                          onClick={async (): Promise<void> => {
-                            assignedBreakoutRoom.join();
-                          }}
-                          styles={commonButtonStyles}
-                        />
-                      )
+                      assignedBreakoutRoom &&
+                        assignedBreakoutRoom.state === 'open' &&
+                        !latestNotifications['assignedBreakoutRoomOpened'] &&
+                        !latestNotifications['assignedBreakoutRoomChanged'] && (
+                          <PrimaryButton
+                            text={callStrings.joinBreakoutRoomButtonLabel}
+                            onClick={async (): Promise<void> => {
+                              assignedBreakoutRoom.join();
+                            }}
+                            styles={commonButtonStyles}
+                          />
+                        )
                     }
                     {microphoneButtonIsEnabled && (
                       <Microphone
