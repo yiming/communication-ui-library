@@ -1,0 +1,9 @@
+{
+  "type": "prerelease",
+  "area": "feature",
+  "workstream": "Breakout rooms",
+  "comment": "Hide join breakout room button when auto move is happening",
+  "packageName": "@azure/communication-react",
+  "email": "79475487+mgamis-msft@users.noreply.github.com",
+  "dependentChangeType": "patch"
+}
