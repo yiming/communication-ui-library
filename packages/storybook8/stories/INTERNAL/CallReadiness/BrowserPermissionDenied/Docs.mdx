@@ -1,0 +1,61 @@
+import { Canvas, Meta, ArgTypes } from '@storybook/addon-docs';
+import * as BrowserPermissionDeniedStories from './index.stories';
+import {BrowserPermissionDenied, BrowserPermissionDeniedIOS} from from '@internal/react-components';
+import BrowserPermissionDeniedAndroidDrawerExample from '!!raw-loader!./snippets/BrowserPermissionDeniedAndroidDrawer.snippet.tsx';
+import BrowserPermissionDeniedDrawerExample from '!!raw-loader!./snippets/BrowserPermissionDeniedDrawer.snippet.tsx';
+import BrowserPermissionDeniedIOSDrawerExample from '!!raw-loader!./snippets/BrowserPermissionDeniedIOSDrawer.snippet.tsx';
+import BrowserPermissionDeniedModalExample from '!!raw-loader!./snippets/BrowserPermissionDeniedModal.snippet.tsx';
+import { SingleLineBetaBanner } from '../../../BetaBanners/SingleLineBetaBanner';
+import { Stack } from '@fluentui/react';
+
+<Meta of={BrowserPermissionDeniedStories} />
+
+<Stack>
+    # Site Permissions
+    <SingleLineBetaBanner />
+
+    Component to display information to the end user when their browser is denied permission to access the camera
+    and microphone.
+
+    ## Using in a modal
+    You are able to hide the BrowserPermissionDenied component in a Modal to show the help tile over your
+    applications user interface.
+
+    <Canvas
+        of={BrowserPermissionDeniedStories.BrowserPermissionDeniedModalExampleDocsOnly}
+        source={BrowserPermissionDeniedModalExample}/>
+
+    ## Using on mobile
+    We provide a range of views for mobile and their different mobile operating systems.
+    The first mobile example is very similar to the modal view and is scaled down to fit within a mobile screen.
+
+    <Canvas
+        of={BrowserPermissionDeniedStories.BrowserPermissionDeniedDrawer}
+        source={BrowserPermissionDeniedDrawerExample}/>
+
+    <ArgTypes of={BrowserPermissionDeniedStories.BrowserPermissionDeniedDrawer} />
+
+    ### IOS Specific View
+
+    The second example is specific to iOS and provides options to add steps and an image for better troubleshooting.
+
+    <Canvas
+        of={BrowserPermissionDeniedStories.BrowserPermissionDeniedIOSDrawerExampleDocsOnly}
+        source={BrowserPermissionDeniedIOSDrawerExample}/>
+
+    *IOS mobile view also includes the props from the previous example and the ones below
+
+    <ArgTypes of={BrowserPermissionDeniedStories.BrowserPermissionDeniedIOSDrawerExampleDocsOnly} />
+
+    ### Android Specific View
+
+    The last example is a generic view and can be used for operating systems that can have variety of UI differences
+    like Android devices.
+
+    <Canvas
+        of={BrowserPermissionDeniedStories.BrowserPemissionDeniedAndroidDrawerExampleDocsOnly}
+        source={BrowserPermissionDeniedAndroidDrawerExample}/>
+
+    <ArgTypes of={BrowserPermissionDeniedStories.BrowserPemissionDeniedAndroidDrawerExampleDocsOnly} />
+
+</Stack>
