@@ -373,9 +373,9 @@ export interface BreakoutRoomsState {
     // (undocumented)
     assignedBreakoutRoom?: BreakoutRoom;
     // (undocumented)
-    breakoutRoomOriginCallId?: string;
-    // (undocumented)
     breakoutRoomSettings?: BreakoutRoomsSettings;
+    // (undocumented)
+    originCallId?: string;
 }
 
 // @beta
@@ -870,6 +870,8 @@ export interface CallCompositeStrings {
     invalidMeetingIdentifier: string;
     inviteToRoomRemovedDetails?: string;
     inviteToRoomRemovedTitle: string;
+    joinBreakoutRoomBannerButtonLabel: string;
+    joinBreakoutRoomBannerText: string;
     joinBreakoutRoomButtonLabel: string;
     learnMore: string;
     leaveBreakoutRoomAndMeetingButtonLabel: string;
@@ -944,6 +946,8 @@ export interface CallCompositeStrings {
     resumeCallButtonLabel: string;
     resumingCallButtonAriaLabel: string;
     resumingCallButtonLabel: string;
+    returnFromBreakoutRoomBannerButtonLabel: string;
+    returnFromBreakoutRoomBannerText: string;
     returnFromBreakoutRoomButtonLabel: string;
     returnToCallButtonAriaDescription?: string;
     returnToCallButtonAriaLabel?: string;

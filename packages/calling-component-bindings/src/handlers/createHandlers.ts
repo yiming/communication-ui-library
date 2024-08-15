@@ -77,7 +77,7 @@ export const createDefaultCallingHandlers: CreateDefaultCallingHandlers = memoiz
   /* @conditional-compile-remove(breakout-rooms) */
   const callState = call?.id ? callClient.getState().calls[call?.id] : undefined;
   /* @conditional-compile-remove(breakout-rooms) */
-  const breakoutRoomOriginCallId = callState?.breakoutRooms?.breakoutRoomOriginCallId;
+  const breakoutRoomOriginCallId = callState?.breakoutRooms?.originCallId;
   /* @conditional-compile-remove(breakout-rooms) */
   const breakoutRoomOriginCall = callAgent?.calls.find((call) => call.id === breakoutRoomOriginCallId);
   const commonCallingHandlers = createDefaultCommonCallingHandlers(callClient, deviceManager, call, options);

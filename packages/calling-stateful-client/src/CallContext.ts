@@ -251,8 +251,8 @@ export class CallContext {
       /* @conditional-compile-remove(breakout-rooms) */
       // Update the old origin call id of breakout room calls to the new call id
       Object.values(draft.calls).forEach((call) => {
-        if (call.breakoutRooms?.breakoutRoomOriginCallId === oldCallId) {
-          call.breakoutRooms?.breakoutRoomOriginCallId === newCallId;
+        if (call.breakoutRooms?.originCallId === oldCallId) {
+          call.breakoutRooms?.originCallId === newCallId;
         }
       });
     });
@@ -641,7 +641,7 @@ export class CallContext {
     this.modifyState((draft: CallClientState) => {
       const call = draft.calls[this._callIdHistory.latestCallId(breakoutRoomCallId)];
       if (call) {
-        call.breakoutRooms = { ...call.breakoutRooms, breakoutRoomOriginCallId: callId };
+        call.breakoutRooms = { ...call.breakoutRooms, originCallId: callId };
       }
     });
   }

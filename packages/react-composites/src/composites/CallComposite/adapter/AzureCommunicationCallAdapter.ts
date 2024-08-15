@@ -1074,7 +1074,7 @@ export class AzureCommunicationCallAdapter<AgentType extends CallAgent | TeamsCa
     }
 
     // Find origin call id from breakout room call state
-    const originCallId = callState?.breakoutRooms?.breakoutRoomOriginCallId;
+    const originCallId = callState?.breakoutRooms?.originCallId;
 
     // Find origin call from call agent
     const originCall = this.callAgent?.calls.find((callAgentCall) => {
@@ -1386,11 +1386,11 @@ export class AzureCommunicationCallAdapter<AgentType extends CallAgent | TeamsCa
   private hangupOtherBreakoutRoomCalls(breakoutRoomCall: Call | TeamsCall): void {
     // Get origin call id of breakout room call
     const breakoutRoomCallState = this.callClient.getState().calls[breakoutRoomCall.id];
-    const originCallId = breakoutRoomCallState.breakoutRooms?.breakoutRoomOriginCallId;
+    const originCallId = breakoutRoomCallState.breakoutRooms?.originCallId;
 
     // Get other breakout room calls with the same origin call
     const otherBreakoutRoomCallStates = Object.values(this.callClient.getState().calls).filter((callState) => {
-      return callState.breakoutRooms?.breakoutRoomOriginCallId === originCallId;
+      return callState.breakoutRooms?.originCallId === originCallId;
     });
 
     // Hang up other breakout room calls
