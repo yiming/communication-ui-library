@@ -91,7 +91,7 @@ export class CallContext {
   private _emitter: EventEmitter;
   private _atomicId: number;
   private _callIdHistory: CallIdHistory = new CallIdHistory();
-  private _timeOutId: { [key: string]: NodeJS.Timeout } = {};
+  private _timeOutId: { [key: string]: ReturnType<typeof setTimeout> } = {};
 
   constructor(
     userId: CommunicationIdentifierKind,
