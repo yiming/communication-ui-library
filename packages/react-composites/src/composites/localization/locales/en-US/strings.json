@@ -350,7 +350,11 @@
     "muteAllCancelButtonLabel": "Cancel",
     "joinBreakoutRoomButtonLabel": "Join breakout room",
     "returnFromBreakoutRoomButtonLabel": "Leave room",
-    "leaveBreakoutRoomAndMeetingButtonLabel": "Leave meeting"
+    "leaveBreakoutRoomAndMeetingButtonLabel": "Leave meeting",
+    "joinBreakoutRoomBannerText": "Join breakout room",
+    "joinBreakoutRoomBannerButtonLabel": "Join",
+    "returnFromBreakoutRoomBannerText": "Return to main meeting",
+    "returnFromBreakoutRoomBannerButtonLabel": "Rejoin"
   },
   "chat": {
     "chatListHeader": "In this chat",

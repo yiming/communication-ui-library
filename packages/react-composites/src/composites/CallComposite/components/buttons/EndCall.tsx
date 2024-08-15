@@ -109,7 +109,7 @@ export const EndCall = (props: {
   );
 
   /* @conditional-compile-remove(breakout-rooms) */
-  const enableBreakoutRoomMenu = !!props.returnFromBreakoutRoom;
+  const enableBreakoutRoomMenu = !props.mobileView && !!props.returnFromBreakoutRoom;
   /* @conditional-compile-remove(breakout-rooms) */
   const breakoutRoomMenuProps: IContextualMenuProps = {
     items: [

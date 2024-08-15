@@ -374,7 +374,8 @@ export const CommonCallControlBar = (props: CommonCallControlBarProps & Containe
                   <ControlBar layout={props.displayVertical ? 'vertical' : 'horizontal'} styles={centerContainerStyles}>
                     {
                       /* @conditional-compile-remove(breakout-rooms) */
-                      assignedBreakoutRoom &&
+                      !props.mobileView &&
+                        assignedBreakoutRoom &&
                         assignedBreakoutRoom.state === 'open' &&
                         !latestNotifications['assignedBreakoutRoomOpened'] &&
                         !latestNotifications['assignedBreakoutRoomChanged'] && (
