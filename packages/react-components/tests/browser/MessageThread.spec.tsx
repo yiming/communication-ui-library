@@ -2,35 +2,56 @@
 // Licensed under the MIT License.
 
 import React from 'react';
-import { expect } from '@playwright/experimental-ct-react';
+import { test, expect } from '@playwright/experimental-ct-react';
 
-import { test as betaTest } from './FlavoredBaseTest';
+// import { test as betaTest } from './FlavoredBaseTest';
 import { ChatMessage, Message, MessageThread } from '../../src';
 
-betaTest.describe('MessageThread focusing', () => {
-  betaTest.skip(({ isBetaBuild }) => !isBetaBuild, 'The tests should be run for beta flavor only');
+test.describe('MessageThread focusing', () => {
+  // betaTest.skip(({ isBetaBuild }) => !isBetaBuild, 'The tests should be run for beta flavor only');
 
-  betaTest(
-    'MessageThread keyboard press tab and down arrow key should go to correct message',
-    async ({ mount, page }) => {
-      const component = await mount(<MessageThread userId={'1'} messages={getMessages()} />);
-      let index = 0;
-      let bubbleHTML = '';
-      const expectedMessage = 'Second';
-      await component.evaluate(() => document.fonts.ready);
-      await page.keyboard.press('Tab');
-      await page.keyboard.press('ArrowDown').then(async () => {
-        index++;
-        const message = getMessages()[index] as ChatMessage;
-        const author = message.senderDisplayName;
-        const messageContent = message.content;
-        bubbleHTML = await page.getByText(`${author}11:50 AM${messageContent}`).innerHTML();
-      });
+  test('MessageThread keyboard press tab and down arrow key should go to correct message', async ({ mount, page }) => {
+    const component = await mount(<MessageThread userId={'1'} messages={getMessages()} />);
+    let index = 0;
+    let bubbleHTML = '';
+    const expectedMessage = 'Second';
+    await component.evaluate(() => document.fonts.ready);
+    await page.keyboard.press('Tab');
+    await page.keyboard.press('ArrowDown').then(async () => {
+      index++;
+      const message = getMessages()[index] as ChatMessage;
+      const author = message.senderDisplayName;
+      const messageContent = message.content;
+      bubbleHTML = await page.getByText(`${author}11:50 AM${messageContent}`).innerHTML();
+    });
 
-      await expect(bubbleHTML.includes(expectedMessage)).toBeTruthy();
-      await expect(index).toEqual(1);
-    }
-  );
+    await expect(bubbleHTML.includes(expectedMessage)).toBeTruthy();
+    await expect(index).toEqual(1);
+  });
+
+  test('MessageThread keyboard navigate to edit menu', async ({ mount, page }) => {
+    const component = await mount(<MessageThread userId={'1'} messages={getMessages()} />);
+    let index = 0;
+    let bubbleHTML = '';
+    const expectedMessage = 'Second';
+    await component.evaluate(() => document.fonts.ready);
+    await page.keyboard.press('Tab');
+    await page.keyboard.press('ArrowDown').then(async () => {
+      index++;
+      const message = getMessages()[index] as ChatMessage;
+      const author = message.senderDisplayName;
+      const messageContent = message.content;
+      bubbleHTML = await page.getByText(`${author}11:50 AM${messageContent}`).innerHTML();
+    });
+    await page.keyboard.press('Enter');
+    await page.keyboard.press('Tab');
+    await page.keyboard.press('Enter').then(async () => {
+      await new Promise((r) => setTimeout(r, 2000));
+    });
+
+    await expect(bubbleHTML.includes(expectedMessage)).toBeTruthy();
+    await expect(index).toEqual(1);
+  });
 
   const getMessages = (): Message[] => {
     const messages: Message[] = [
@@ -83,16 +104,16 @@ betaTest.describe('MessageThread focusing', () => {
   };
 });
 
-betaTest.describe('MessageThread inline image tests', () => {
-  betaTest.skip(({ isBetaBuild }) => !isBetaBuild, 'The tests should be run for beta flavor only');
+test.describe('MessageThread inline image tests', () => {
+  // betaTest.skip(({ isBetaBuild }) => !isBetaBuild, 'The tests should be run for beta flavor only');
 
-  betaTest('MessageThread inline image should show grey box when loading', async ({ mount }) => {
+  test('MessageThread inline image should show grey box when loading', async ({ mount }) => {
     const component = await mount(<MessageThread userId={'1'} messages={getMessages('')} />);
     await component.evaluate(() => document.fonts.ready);
     await expect(component).toHaveScreenshot('message-thread-inline-image-loading-stage.png');
   });
 
-  betaTest('MessageThread inline image should show broken image icon with invalid src', async ({ mount }) => {
+  test('MessageThread inline image should show broken image icon with invalid src', async ({ mount }) => {
     const component = await mount(<MessageThread userId={'1'} messages={getMessages('http://')} />);
     await component.evaluate(() => document.fonts.ready);
     await expect(component).toHaveScreenshot('message-thread-inline-image-broken-image.png');
