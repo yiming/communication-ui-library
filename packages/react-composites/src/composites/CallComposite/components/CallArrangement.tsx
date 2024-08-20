@@ -691,7 +691,7 @@ export const CallArrangement = (props: CallArrangementProps): JSX.Element => {
                         !movingToBreakoutRoomAutomatically && (
                           <Stack styles={bannerNotificationStyles}>
                             <Banner
-                              bannerStrings={{
+                              strings={{
                                 title: assignedBreakoutRoom.displayName
                                   ? locale.strings.call.joinBreakoutRoomBannerTitle.replace(
                                       '{roomName}',
@@ -701,7 +701,7 @@ export const CallArrangement = (props: CallArrangementProps): JSX.Element => {
                                 primaryButtonLabel: locale.strings.call.joinBreakoutRoomBannerButtonLabel
                               }}
                               onClickPrimaryButton={() => assignedBreakoutRoom.join()}
-                              bannerIconProps={{ iconName: 'DoorArrowRight' }}
+                              iconProps={{ iconName: 'DoorArrowRight' }}
                             />
                           </Stack>
                         )
@@ -712,12 +712,12 @@ export const CallArrangement = (props: CallArrangementProps): JSX.Element => {
                         !breakoutRoomSettings.disableReturnToMainMeeting && (
                           <Stack styles={bannerNotificationStyles}>
                             <Banner
-                              bannerStrings={{
+                              strings={{
                                 title: locale.strings.call.returnFromBreakoutRoomBannerTitle,
                                 primaryButtonLabel: locale.strings.call.returnFromBreakoutRoomBannerButtonLabel
                               }}
                               onClickPrimaryButton={() => adapter.returnFromBreakoutRoom()}
-                              bannerIconProps={{ iconName: 'DoorArrowLeft' }}
+                              iconProps={{ iconName: 'DoorArrowLeft' }}
                             />
                           </Stack>
                         )

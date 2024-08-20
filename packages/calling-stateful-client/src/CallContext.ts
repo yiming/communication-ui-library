@@ -92,6 +92,7 @@ export class CallContext {
   private _atomicId: number;
   private _callIdHistory: CallIdHistory = new CallIdHistory();
   private _timeOutId: { [key: string]: ReturnType<typeof setTimeout> } = {};
+  private _callIdsThatPushedLatestNotifications: Partial<Record<NotificationTarget, string>> = {};
 
   constructor(
     userId: CommunicationIdentifierKind,
@@ -652,6 +653,16 @@ export class CallContext {
       const call = draft.calls[this._callIdHistory.latestCallId(callId)];
       if (call) {
         call.breakoutRooms = { ...call.breakoutRooms, breakoutRoomSettings: breakoutRoomSettings };
+      }
+    });
+  }
+
+  /* @conditional-compile-remove(breakout-rooms) */
+  public setBreakoutRoomDisplayName(callId: string, breakoutRoomDisplayName: string): void {
+    this.modifyState((draft: CallClientState) => {
+      const call = draft.calls[this._callIdHistory.latestCallId(callId)];
+      if (call) {
+        call.breakoutRooms = { ...call.breakoutRooms, breakoutRoomDisplayName };
       }
     });
   }
@@ -1257,14 +1268,24 @@ export class CallContext {
   }
 
   /* @conditional-compile-remove(breakout-rooms) */
-  public setLatestNotification(notification: CallNotification): void {
+  public setLatestNotification(callId: string, notification: CallNotification): void {
+    this._callIdsThatPushedLatestNotifications[notification.target] = callId;
     this.modifyState((draft: CallClientState) => {
       draft.latestNotifications[notification.target] = notification;
     });
   }
 
   /* @conditional-compile-remove(breakout-rooms) */
-  public deleteLatestNotification(notificationTarget: NotificationTarget): void {
+  public deleteLatestNotification(callId: string, notificationTarget: NotificationTarget): void {
+    // If the callId did not push the latest notification, do not delete the notification.
+    let callIdToPushLatestNotification = this._callIdsThatPushedLatestNotifications[notificationTarget];
+    callIdToPushLatestNotification = callIdToPushLatestNotification
+      ? this._callIdHistory.latestCallId(callIdToPushLatestNotification)
+      : undefined;
+    if (callIdToPushLatestNotification !== callId) {
+      return;
+    }
+
     this.modifyState((draft: CallClientState) => {
       delete draft.latestNotifications[notificationTarget];
     });

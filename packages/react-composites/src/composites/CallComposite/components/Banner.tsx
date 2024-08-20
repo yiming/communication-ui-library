@@ -3,7 +3,7 @@
 
 import { Theme, mergeStyles } from '@fluentui/react';
 import { _pxToRem } from '@internal/acs-ui-common';
-
+// eslint-disable-next-line no-restricted-imports
 import { IIconProps, Icon, PrimaryButton, Stack, Text, useTheme } from '@fluentui/react';
 import React from 'react';
 
@@ -16,12 +16,12 @@ export interface BannerProps {
   /**
    * Banner strings.
    */
-  bannerStrings?: BannerStrings;
+  strings?: BannerStrings;
 
   /**
    * Banner icon.
    */
-  bannerIconProps?: IIconProps;
+  iconProps?: IIconProps;
 
   /**
    * Callback called when the primary button inside banner is clicked.
@@ -51,7 +51,7 @@ export interface BannerStrings {
  * @private
  */
 export const Banner = (props: BannerProps): JSX.Element => {
-  const strings = props.bannerStrings;
+  const strings = props.strings;
   const theme = useTheme();
 
   return (
@@ -59,12 +59,8 @@ export const Banner = (props: BannerProps): JSX.Element => {
       <Stack data-ui-id="banner" className={containerStyles(theme)}>
         <Stack horizontal horizontalAlign="space-between">
           <Stack horizontal>
-            {props.bannerIconProps?.iconName && (
-              <Icon
-                className={bannerIconClassName}
-                iconName={props.bannerIconProps?.iconName}
-                {...props.bannerIconProps}
-              />
+            {props.iconProps?.iconName && (
+              <Icon className={bannerIconClassName} iconName={props.iconProps?.iconName} {...props.iconProps} />
             )}
             <Text className={titleTextClassName}>{strings?.title}</Text>
           </Stack>

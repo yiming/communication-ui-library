@@ -263,4 +263,11 @@ export const getBreakoutRoomSettings = (state: CallAdapterState): BreakoutRoomsS
 /**
  * @private
  */
+export const getBreakoutRoomDisplayName = (state: CallAdapterState): string | undefined =>
+  state.call?.breakoutRooms?.breakoutRoomDisplayName;
+
+/* @conditional-compile-remove(breakout-rooms) */
+/**
+ * @private
+ */
 export const getLatestNotifications = (state: CallAdapterState): AdapterNotifications => state.latestNotifications;
