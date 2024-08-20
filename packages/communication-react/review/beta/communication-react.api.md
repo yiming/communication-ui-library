@@ -1550,6 +1550,7 @@ export interface CallWithChatCompositeProps extends BaseCompositeProps<CallWithC
 
 // @public
 export interface CallWithChatCompositeStrings {
+    breakoutRoomChatPaneTitle: string;
     chatButtonLabel: string;
     chatButtonNewMessageNotificationLabel: string;
     chatButtonTooltipClose: string;

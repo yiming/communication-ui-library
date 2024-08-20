@@ -1060,18 +1060,31 @@ export class AzureCommunicationCallAdapter<AgentType extends CallAgent | TeamsCa
     if (this.call === undefined) {
       return;
     }
-    // Find call state of current call from stateful layer
-    const callState = this.call
+
+    // Find call state of current breakout room from stateful layer
+    let callState = this.call
       ? Object.values(this.callClient.getState().calls).find((call) => call.id === this.call?.id)
       : undefined;
-    // Find main meeting call from call agent from the this call state
-    const mainMeetingCall = this.callAgent?.calls.find((callAgentCall) => {
-      return callAgentCall.id === callState?.breakoutRooms?.breakoutRoomOriginCallId;
+    // Current call state of breakout room may not be present in calls array if the breakout room call is ended.
+    // So let's try to find the call state from callsEnded array
+    if (callState === undefined) {
+      callState = this.call
+        ? Object.values(this.callClient.getState().callsEnded).find((call) => call.id === this.call?.id)
+        : undefined;
+    }
+
+    // Find origin call id from breakout room call state
+    const originCallId = callState?.breakoutRooms?.breakoutRoomOriginCallId;
+
+    // Find origin call from call agent
+    const originCall = this.callAgent?.calls.find((callAgentCall) => {
+      return callAgentCall.id === originCallId;
     });
-    // If a main meeting call exists then process that call and resume
-    if (mainMeetingCall) {
+
+    // If an origin call exists then process that call and resume
+    if (originCall) {
       const breakoutRoomCall = this.call;
-      this.processNewCall(mainMeetingCall);
+      this.processNewCall(originCall);
       await this.resumeCall();
       if (breakoutRoomCall?.state === 'Connected') {
         breakoutRoomCall.hangUp();
@@ -1352,6 +1365,9 @@ export class AzureCommunicationCallAdapter<AgentType extends CallAgent | TeamsCa
 
   /* @conditional-compile-remove(breakout-rooms) */
   private assignedBreakoutRoomUpdated(breakoutRoom: BreakoutRoom): void {
+    if (this.call?.id === undefined) {
+      return;
+    }
     if (breakoutRoom.state === 'closed') {
       this.returnFromBreakoutRoom();
     }

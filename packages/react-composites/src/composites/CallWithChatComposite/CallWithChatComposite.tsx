@@ -3,10 +3,14 @@
 
 import React, { useCallback, useState, useMemo, useEffect, useRef } from 'react';
 import { mergeStyles, PartialTheme, Stack, Theme } from '@fluentui/react';
+/* @conditional-compile-remove(breakout-rooms) */
+import { Spinner, SpinnerSize } from '@fluentui/react';
 import { CallCompositePage } from '../CallComposite';
 import { CallSurvey } from '@azure/communication-calling';
 import { CallState } from '@azure/communication-calling';
 import { callCompositeContainerStyles, compositeOuterContainerStyles } from './styles/CallWithChatCompositeStyles';
+/* @conditional-compile-remove(breakout-rooms) */
+import { chatSpinnerContainerStyles } from './styles/CallWithChatCompositeStyles';
 import { CallWithChatAdapter } from './adapter/CallWithChatAdapter';
 import { CallWithChatBackedCallAdapter } from './adapter/CallWithChatBackedCallAdapter';
 import { CallWithChatBackedChatAdapter } from './adapter/CallWithChatBackedChatAdapter';
@@ -577,28 +581,52 @@ const CallWithChatScreen = (props: CallWithChatScreenProps): JSX.Element => {
     ]
   );
 
-  const onRenderChatContent = useCallback(
-    (): JSX.Element => (
+  const onRenderChatContent = useCallback((): JSX.Element => {
+    /* @conditional-compile-remove(breakout-rooms) */
+    return callWithChatAdapter.getState().chat?.threadId ? (
       <ChatComposite
         adapter={chatAdapter}
         fluentTheme={theme}
         options={chatCompositeOptions}
         onFetchAvatarPersonaData={props.onFetchAvatarPersonaData}
       />
-    ),
-    [chatAdapter, props.onFetchAvatarPersonaData, chatCompositeOptions, theme]
-  );
+    ) : (
+      <Stack styles={chatSpinnerContainerStyles}>
+        <Spinner size={SpinnerSize.large} />
+      </Stack>
+    );
+    return (
+      <ChatComposite
+        adapter={chatAdapter}
+        fluentTheme={theme}
+        options={chatCompositeOptions}
+        onFetchAvatarPersonaData={props.onFetchAvatarPersonaData}
+      />
+    );
+  }, [
+    chatAdapter,
+    props.onFetchAvatarPersonaData,
+    chatCompositeOptions,
+    theme,
+    /* @conditional-compile-remove(breakout-rooms) */ callWithChatAdapter
+  ]);
+
+  let chatPaneTitle = callWithChatStrings.chatPaneTitle;
+  /* @conditional-compile-remove(breakout-rooms) */
+  if (callAdapter.getState().call?.breakoutRooms?.breakoutRoomOriginCallId) {
+    chatPaneTitle = callWithChatStrings.breakoutRoomChatPaneTitle;
+  }
 
   const sidePaneHeaderRenderer = useCallback(
     () => (
       <SidePaneHeader
-        headingText={callWithChatStrings.chatPaneTitle}
+        headingText={chatPaneTitle}
         onClose={closeChat}
         dismissSidePaneButtonAriaLabel={callWithChatStrings.dismissSidePaneButtonLabel ?? ''}
         mobileView={mobileView}
       />
     ),
-    [callWithChatStrings.chatPaneTitle, callWithChatStrings.dismissSidePaneButtonLabel, closeChat, mobileView]
+    [chatPaneTitle, callWithChatStrings.dismissSidePaneButtonLabel, closeChat, mobileView]
   );
 
   const sidePaneContentRenderer = useMemo(
