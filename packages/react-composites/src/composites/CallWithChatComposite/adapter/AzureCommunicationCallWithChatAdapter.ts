@@ -144,7 +144,6 @@ class CallWithChatContext {
     this.updateClientState(mergeChatAdapterStateIntoCallWithChatAdapterState(this.state, chatAdapterState));
   }
 
-  /* @conditional-compile-remove(breakout-rooms) */
   public unsetChatState(): void {
     this.updateClientState({ ...this.state, chat: undefined });
   }
@@ -168,7 +167,6 @@ export class AzureCommunicationCallWithChatAdapter implements CallWithChatAdapte
   private isAdapterDisposed: boolean = false;
   /* @conditional-compile-remove(breakout-rooms) */
   private createChatAdapterCallback: ((threadId: string) => Promise<ChatAdapter>) | undefined;
-  /* @conditional-compile-remove(breakout-rooms) */
   private originCallChatAdapter: ChatAdapter | undefined;
   /* @conditional-compile-remove(breakout-rooms) */
   private breakoutRoomChatAdapter: ChatAdapter | undefined;
@@ -185,7 +183,6 @@ export class AzureCommunicationCallWithChatAdapter implements CallWithChatAdapte
     this.onChatStateChange = onChatStateChange;
     if (chatAdapter) {
       this.updateChatAdapter(chatAdapter);
-      /* @conditional-compile-remove(breakout-rooms) */
       this.originCallChatAdapter = chatAdapter;
     }
 
@@ -204,15 +201,19 @@ export class AzureCommunicationCallWithChatAdapter implements CallWithChatAdapte
         }
       }
     });
-    /* @conditional-compile-remove(breakout-rooms) */
     this.callAdapter.on('callEnded', () => {
+      /* @conditional-compile-remove(breakout-rooms) */
       const originCallId = this.context.getState().call?.breakoutRooms?.breakoutRoomOriginCallId;
 
-      // If the call ended is a breakout room call, return to the origin call chat adapter
+      /* @conditional-compile-remove(breakout-rooms) */
+      // If the call ended is a breakout room call, then dispose the breakout room chat adapter
       if (originCallId && this.originCallChatAdapter) {
         this.breakoutRoomChatAdapter?.dispose();
-        this.updateChatAdapter(this.originCallChatAdapter);
       }
+
+      this.chatAdapter?.offStateChange(this.onChatStateChange);
+      this.chatAdapter = undefined;
+      this.context.unsetChatState();
     });
     this.onCallStateChange = onCallStateChange;
   }
@@ -282,7 +283,6 @@ export class AzureCommunicationCallWithChatAdapter implements CallWithChatAdapte
     chatAdapter.then((adapter) => {
       if (!this.isAdapterDisposed) {
         this.updateChatAdapter(adapter);
-        /* @conditional-compile-remove(breakout-rooms) */
         this.originCallChatAdapter = adapter;
       }
     });
@@ -374,11 +374,18 @@ export class AzureCommunicationCallWithChatAdapter implements CallWithChatAdapte
 
   /** Join existing Call. */
   public joinCall(options?: boolean | JoinCallOptions): Call | undefined {
+    let call = undefined;
     if (typeof options === 'boolean') {
-      return this.callAdapter.joinCall(options);
+      call = this.callAdapter.joinCall(options);
     } else {
-      return this.callAdapter.joinCall(options);
+      call = this.callAdapter.joinCall(options);
     }
+
+    if (this.originCallChatAdapter) {
+      this.updateChatAdapter(this.originCallChatAdapter);
+    }
+
+    return call;
   }
   /** Leave current Call. */
   public async leaveCall(forEveryone?: boolean): Promise<void> {
